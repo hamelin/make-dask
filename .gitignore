@@ -1,0 +1,9 @@
+# Ignore Dask runtime files
+global.lock
+purge.lock
+*.log
+*.pid
+worker-*.dirlock
+
+# Ignore a Makefile written up in this directory for testing purposes
+Makefile
