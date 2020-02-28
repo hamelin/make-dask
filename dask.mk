@@ -127,6 +127,11 @@ dask-tail-logs: $(dask-status-main)
 
 
 # Clean-up
+
+.PHONY: dask-reset
+dask-reset: dask-kill
+    rm -f $(call dask-pid-file,$(dask-spawn))
+
 .PHONY: dask-clean
-dask-clean: dask-kill
-	rm -f $(call dask-pid-file,$(dask-spawn)) $(call dask-log-file,$(dask-spawn)) $(dask-status-main) $(call dask-status-file,$(dask-spawn))
+dask-clean: dask-reset
+	rm -f $(call dask-log-file,$(dask-spawn)) $(dask-status-main) $(call dask-status-file,$(dask-spawn))
