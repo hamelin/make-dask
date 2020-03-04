@@ -2,8 +2,8 @@
 dask-n = $(addsuffix @$(2),$(shell seq --format='%02.f' 1 $(1)))
 -include $(HOME)/.dask/local.mk
 ifeq ($(dask-workers),)
-	$(warning No Dask worker defined -- variable \033[1;37mdask-workers\033[0m undefined.)
-	$(warning Defaulting to 4 worker threads in a single local process.)
+	_dask-msg := $(shell echo -e "No Dask worker defined -- variable \033[1;37mdask-workers\033[0m undefined." 1>&2)
+	_dask-msg := $(shell echo "Defaulting to 4 worker threads in a single local process.")
 	dask-threads-per-worker = 4
 	dask-workers = default@
 endif
